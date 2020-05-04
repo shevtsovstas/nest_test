@@ -4,6 +4,7 @@ export class CreateDto {
 }
 
 export class UpdateDto {
-  id: number
+  id: string
+  title: string
   isCompleted: boolean
 }
