@@ -38,7 +38,8 @@ export class TodoController {
     if ( todo=== undefined ) {
       throw new HttpException('404 Page not found', HttpStatus.NOT_FOUND);
     }
-    return this.todoService.findOne(id);
+    return todo;
+    // return this.todoService.findOne(id);
     /*const  todo = this.todoService.findOne(id)
     console.log(todo)
     if (todo === undefined) {
@@ -63,19 +64,16 @@ export class TodoController {
   }
 
   @Put(':id')
-  async updateAction(
-    @Param(':id') id: string,
-    @Body() updateDto: UpdateDto
-  ): Promise<Todo> {
+  async updateAction(@Param(':id') id: string, @Body() { title, isCompleted = false }: UpdateDto): Promise<Todo> {
     // return 'Todo save';
     console.log("Update for id=="+ id)
-    const todo = await this.todoService.findOne(updateDto.id)
-    if ( todo=== undefined ) {
+    const todo = await this.todoService.findOne(id)
+    if ( todo === undefined ) {
       throw new HttpException('404 Page not found', HttpStatus.NOT_FOUND);
     }
-    todo.title = updateDto.title
-    todo.isCompleted = updateDto.isCompleted ? true : false
-    console.log("Update for id="+ todo.id)
+    todo.title = title
+    todo.isCompleted = isCompleted ? true : false
+    console.log("Update for id="+ id)
     console.log(todo, "Updated")
     // return "Update for id="+ id
     // return todo

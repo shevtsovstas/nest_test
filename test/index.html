@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test API</title>
+</head>
+<body>
+<h1>Test API</h1>
+<script>
+  fetch('http://localhost:3000/rest/todo/7', {
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    // credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      title: "Study English",
+      isCompleted: true
+    }) // body data type must match "Content-Type" header
+  })
+    .then(response => response.json())
+    .then(data => console.log(data));
+</script>
+</body>
+</html>
